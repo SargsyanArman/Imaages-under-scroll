@@ -35,7 +35,6 @@ body {
 .slider {
   width: 900px;
   overflow-x: auto;
-  white-space: nowrap;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -43,7 +42,8 @@ body {
 }
 
 .slider__images {
-  display: inline-block;
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .slider__image {
