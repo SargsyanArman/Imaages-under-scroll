@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
+import Range from './Range';
+import Sliders from './Sliders';
 import './index.css';
+
 
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,22 +24,8 @@ function App() {
 
   return (
     <div className='slider'>
-      <div className='slider__images'>
-        {images.slice(currentIndex, currentIndex + 3).map((image, index) => (
-          <img key={index} src={image} className='slider__image' />
-        ))}
-      </div>
-      <div className="input-scroll">
-        <input
-          type="range"
-          className="slider-scroll"
-          value={currentIndex}
-          min={0}
-          max={images.length - 3}
-          step={3}
-          onChange={handleSliderChange}
-        />
-      </div>
+      <Sliders images={images} currentIndex={currentIndex} />
+      <Range handleChange={handleSliderChange} currentIndex={currentIndex} rangeLevel={images.length - 3} />
     </div>
   );
 }
