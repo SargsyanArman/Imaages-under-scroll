@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 
 function App() {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const images = [
     'https://cdn.kimkim.com/files/a/content_articles/featured_photos/0e6ff459939c095e91c6f32be8b77671cf3d9f14/big-0f20b3176412a8cb3688ba14f5f547d8.jpg',
@@ -16,13 +17,25 @@ function App() {
     'https://russiatrek.org/blog/wp-content/uploads/2016/01/saint-petersburg-at-night-from-above-russia-8.jpg'
   ];
 
+  const handleSliderChange = (e) => setCurrentIndex(parseInt(e.target.value))
 
   return (
     <div className='slider'>
       <div className='slider__images'>
-        {images.map((image, index) => (
-          <img key={index} src={image}className='slider__image'/>
+        {images.slice(currentIndex, currentIndex + 3).map((image, index) => (
+          <img key={index} src={image} className='slider__image' />
         ))}
+      </div>
+      <div className="input-scroll">
+        <input
+          type="range"
+          className="slider-scroll"
+          value={currentIndex}
+          min={0}
+          max={images.length - 3}
+          step={3}
+          onChange={handleSliderChange}
+        />
       </div>
     </div>
   );
